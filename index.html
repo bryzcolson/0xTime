@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>What time is it?</title>
+  </head>
+  <body>
+    <h1>What time is it?</h1>
+    <span id="time"></span>
+    <script>
+      let span = document.getElementById("time");
+      function timeHex() {
+        let dateobj = new Date();
+        let secs = 3600*dateobj.getHours() + 60*dateobj.getMinutes() + dateobj.getSeconds();
+        let secsHex = secs*((32 * 256 * 16)/86400);
+        let h = Math.floor(secsHex / (256 * 16));
+        let m = Math.floor((secsHex % (256 * 16)) / 16);
+        span.textContent = " It is 0x" + h.toString(16).padStart(2, '0') + m.toString(16).padStart(2, '0');
+        setTimeout(timeHex);
+      }
+      timeHex();
+    </script>
+  </body>
+</html>
